@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <RadioGroup
+        android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -23,15 +24,14 @@
             android:id="@+id/EasyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Easy"
+            android:checked="true"
             android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/HardBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Hard"
             android:textSize="24sp" />
 
