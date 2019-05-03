@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textViewDiffInfo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,8 +24,8 @@
             android:id="@+id/EasyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Easy"
             android:checked="true"
+            android:text="Easy"
             android:textSize="24sp" />
 
         <RadioButton
@@ -44,7 +44,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
-        android:text="난이도 설명"
+        android:text="글과 사진으로된 객관식 문제로만\n이루어져 있습니다."
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -6,28 +6,54 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private RadioGroup rg = findViewById(R.id.group);
+    RadioGroup rg;
+    RadioButton easy;
+    RadioButton hard;
+    RadioButton rb;
+    String diff;
+    TextView diffInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //rg.setOnCheckedChangeListener();
+        rg  = (RadioGroup) findViewById(R.id.group);
+        easy = (RadioButton) findViewById(R.id.EasyBtn);
+        hard = (RadioButton) findViewById(R.id.HardBtn);
+        diffInfo = (TextView) findViewById(R.id.textViewDiffInfo);
+
+        easy.setOnClickListener(radioBtnClickListener);
+        hard.setOnClickListener(radioBtnClickListener);
     }
 
-
+    RadioButton.OnClickListener radioBtnClickListener = new RadioButton.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            if(easy.isChecked()){
+                diffInfo.setText("글과 사진으로된 객관식 문제로만\n이루어져 있습니다.");
+            } else if(hard.isChecked()){
+                diffInfo.setText("글로된 주관식 문제로만\n이루어져 있습니다.");
+            }
+        }
+    };
 
     public void onQuizActivity(View view) {
-        startActivity(new Intent(this, QuizActivity.class));
+        rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+        diff = rb.getText().toString();
+
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.putExtra("type", diff);
+        startActivity(intent);
     }
 
     public void onQuestionListActivity(View view) {
         startActivity(new Intent( this, QuestionListActivity.class));
     }
-
 
 }
