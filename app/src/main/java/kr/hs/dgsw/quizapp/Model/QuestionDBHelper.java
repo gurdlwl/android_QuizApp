@@ -44,7 +44,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("questino", bean.getQuestion());
+        values.put("question", bean.getQuestion());
         values.put("score", bean.getScore());
         values.put("answer", bean.getAnswer());
         values.put("type", bean.getType());
