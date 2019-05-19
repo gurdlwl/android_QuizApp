@@ -71,11 +71,16 @@ public class QuestionListActivity extends AppCompatActivity implements ListClick
         Intent intent = new Intent(this, SettingActivity.class);
         intent.putExtra("id", data.get(position).getId());
         startActivityForResult(intent, REQUEST_CODE);
-        Toast.makeText(this, "click!", Toast.LENGTH_SHORT).show();
     }
 
-    public void onBtnPwClick(View v){
+    public void onBtnPwClick(View v) {
         EditText pw = findViewById(R.id.editTextPw);
+
+        if (pw.getText().toString().length() == 0){
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(password == Integer.parseInt(pw.getText().toString())){
             findViewById(R.id.pwLayout).setVisibility(View.GONE);
             findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);

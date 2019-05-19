@@ -17,16 +17,15 @@ public class MainActivity extends AppCompatActivity {
     String diff;
     TextView diffInfo;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rg  = (RadioGroup) findViewById(R.id.group);
-        easy = (RadioButton) findViewById(R.id.EasyBtn);
-        hard = (RadioButton) findViewById(R.id.HardBtn);
-        diffInfo = (TextView) findViewById(R.id.textViewDiffInfo);
+        rg  = findViewById(R.id.group);
+        easy = findViewById(R.id.EasyBtn);
+        hard = findViewById(R.id.HardBtn);
+        diffInfo = findViewById(R.id.textViewDiffInfo);
 
         easy.setOnClickListener(radioBtnClickListener);
         hard.setOnClickListener(radioBtnClickListener);
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void onQuizActivity(View view) {
-        rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+        rb = findViewById(rg.getCheckedRadioButtonId());
         diff = rb.getText().toString();
 
         Intent intent = new Intent(this, QuizActivity.class);

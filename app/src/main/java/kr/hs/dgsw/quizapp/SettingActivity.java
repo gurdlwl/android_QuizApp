@@ -1,7 +1,6 @@
 package kr.hs.dgsw.quizapp;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.util.ArrayList;
 
 import kr.hs.dgsw.quizapp.Model.QuestionBean;
 import kr.hs.dgsw.quizapp.Model.QuestionDBHelper;

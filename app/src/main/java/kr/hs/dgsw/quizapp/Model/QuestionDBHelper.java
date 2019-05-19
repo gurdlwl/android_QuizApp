@@ -69,10 +69,8 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
             bean.setType(c.getInt(c.getColumnIndex("type")));
             bean.setQuestion(c.getString(c.getColumnIndex("question")));
             String[] choices = new String[4];
-            for(int i=1; i<5; i++){
-                choices[i-1]
-                        = c.getString(c.getColumnIndex("choice" + i));
-            }
+            for(int i=1; i<5; i++)
+                choices[i-1] = c.getString(c.getColumnIndex("choice" + i));
             bean.setChoices(choices);
             return bean;
         } else {
@@ -94,10 +92,8 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
             bean.setType(c.getInt(c.getColumnIndex("type")));
             bean.setQuestion(c.getString(c.getColumnIndex("question")));
             String[] choices = new String[4];
-            for (int i = 1; i < 5; i++) {
-                choices[i - 1]
-                        = c.getString(c.getColumnIndex("choice" + i));
-            }
+            for (int i = 1; i < 5; i++)
+                choices[i - 1] = c.getString(c.getColumnIndex("choice" + i));
             bean.setChoices(choices);
             questions.add(bean);
         }
