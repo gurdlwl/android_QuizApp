@@ -96,7 +96,6 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
-            Toast.makeText(this, "" + checkedId, Toast.LENGTH_SHORT).show();
             if(checkedId == R.id.radioButton1)
                 answer = 1;
             else if(checkedId == R.id.radioButton2)

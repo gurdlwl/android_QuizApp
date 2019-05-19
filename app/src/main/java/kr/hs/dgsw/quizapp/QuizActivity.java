@@ -21,6 +21,7 @@ public class QuizActivity extends AppCompatActivity {
     private QuestionDBHelper helper;
     private int index = 0;
     private String[] choices = new String[5];
+    private int answer;
 
     private TextView tv;
     private RadioGroup rg;
@@ -28,6 +29,9 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rb2;
     private RadioButton rb3;
     private RadioButton rb4;
+    private RadioButton chkRb;
+
+    private TextView score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +62,24 @@ public class QuizActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.radioButton2);
         rb3 = findViewById(R.id.radioButton3);
         rb4 = findViewById(R.id.radioButton4);
+
+
     }
 
     public void onNextClick(View v){
         index++;
         if(index < bean.size())
             nextQuiz();
-        else
+        else{
             Toast.makeText(this, "다음 문제가 없습니다", Toast.LENGTH_SHORT).show();
-        // 점수 합계 화면(점수, 메인으로 가기)
+            findViewById(R.id.mainLayout).setVisibility(View.GONE);
+            findViewById(R.id.scroeLayout).setVisibility(View.VISIBLE);
+        }
     }
 
     private void nextQuiz(){
+        //chkAnswer();
+
         rb1.setChecked(false);
         rb2.setChecked(false);
         rb3.setChecked(false);
@@ -82,5 +92,13 @@ public class QuizActivity extends AppCompatActivity {
         rb2.setText(choices[1]);
         rb3.setText(choices[2]);
         rb4.setText(choices[3]);
+    }
+
+    private void chkAnswer(){
+        if(index == 0)
+            return;
+
+        answer = quiz.getAnswer();
+        //if(chkRb == answer)
     }
 }
