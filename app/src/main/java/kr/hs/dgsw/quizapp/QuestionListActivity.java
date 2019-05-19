@@ -1,5 +1,6 @@
 package kr.hs.dgsw.quizapp;
 
+import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,11 +23,15 @@ public class QuestionListActivity extends AppCompatActivity implements ListClick
     private QuestionDBHelper helper;
     private ListAdapter adapter;
     private ArrayList<QuestionBean> data;
+    private final int password = 0000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_list);
+
+        findViewById(R.id.mainLayout).setVisibility(View.GONE);
+        findViewById(R.id.pwLayout).setVisibility(View.VISIBLE);
 
         list = findViewById(R.id.questionList);
         helper = new QuestionDBHelper(this, "question", null, 1);
@@ -66,5 +72,14 @@ public class QuestionListActivity extends AppCompatActivity implements ListClick
         intent.putExtra("id", data.get(position).getId());
         startActivityForResult(intent, REQUEST_CODE);
         Toast.makeText(this, "click!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onBtnPwClick(View v){
+        EditText pw = findViewById(R.id.editTextPw);
+        if(password == Integer.parseInt(pw.getText().toString())){
+            findViewById(R.id.pwLayout).setVisibility(View.GONE);
+            findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);
+        } else
+            Toast.makeText(this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
     }
 }

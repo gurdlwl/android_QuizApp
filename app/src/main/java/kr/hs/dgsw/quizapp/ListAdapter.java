@@ -39,9 +39,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
         listViewHolder.textViewQuestion.setText(questionBean.getQuestion());
 
         if(questionBean.getType() == QuestionBean.TYPE_TEXT){
-            listViewHolder.imageViewType.setImageURI(Uri.parse("R.drawable.baseline_text_fields_black_48dp"));
+            listViewHolder.imageViewType.setImageResource(R.drawable.baseline_text_fields_black_48dp);
         } else if(questionBean.getType() == QuestionBean.TYPE_IMAGE){
-            listViewHolder.imageViewType.setImageURI(Uri.parse("R.drawable.baseline_photo_black_48dp"));
+            listViewHolder.imageViewType.setImageResource(R.drawable.baseline_photo_black_48dp);
         }
 
         final int index = i; //questionBean.getId()-1;

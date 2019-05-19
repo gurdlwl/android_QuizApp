@@ -47,11 +47,11 @@ public class SettingActivity extends AppCompatActivity {
     private ImageView iv4;
 
     private int id;
-    private int answer;
-    private String newQuestion;
+    private int answer = 0;
+    //private String newQuestion;
+    private String[] choice = new String[5];
     private QuestionBean bean;
     private QuestionDBHelper helper;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,31 @@ public class SettingActivity extends AppCompatActivity {
 
         helper = new QuestionDBHelper(this, "question", null, 1);
         id = getIntent().getIntExtra("id", -1);
-        newQuestion = getIntent().getStringExtra("newQuestion");
+        //newQuestion = getIntent().getStringExtra("newQuestion");
 
         if(id > -1){
             bean = helper.select(id);
+            if(bean.getType() == 1)
+                tb.setChecked(false);
+            else if(bean.getType() == 2)
+                tb.setChecked(true);
             editText.setText(bean.getQuestion());
-        } else {
+            choice = bean.getChoices();
+            tv1.setText(choice[0]);
+            tv2.setText(choice[1]);
+            tv3.setText(choice[2]);
+            tv4.setText(choice[3]);
+            answer = bean.getAnswer();
+            if(answer == 1)
+                rb1.setChecked(true);
+            else if(answer == 2)
+                rb2.setChecked(true);
+            else if(answer == 3)
+                rb3.setChecked(true);
+            else if(answer == 4)
+                rb4.setChecked(true);
+        } else
             bean = new QuestionBean();
-        }
 
         //if(newQuestion.equals("new"))
         //    this.findViewById(R.id.btnDelete).setVisibility(View.GONE);
@@ -165,40 +182,43 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void onSave(View view){
-        // radiobox 체크되어있는 문항, 문제 내용 DB에 저장
         String question = editText.getText().toString();
+        choice[0] = tv1.getText().toString();
+        choice[1] = tv2.getText().toString();
+        choice[2] = tv3.getText().toString();
+        choice[3] = tv4.getText().toString();
 
         if(question.length() == 0){
-            Toast.makeText(this, "문제를 입력 해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "문제를 입력해주세요", Toast.LENGTH_SHORT).show();
+        } else if(answer == 0) {
+            Toast.makeText(this, "정답을 체크해주세요", Toast.LENGTH_SHORT).show();
+        } else if(choice == null){
+            Toast.makeText(this, "선택지를 입력해주세요", Toast.LENGTH_SHORT).show();
+        } else {
+
+            bean.setQuestion(question);
+            bean.setChoices(choice);
+            bean.setAnswer(answer);
+            if(tb.isChecked())
+                bean.setType(QuestionBean.TYPE_IMAGE);
+            else
+                bean.setType(QuestionBean.TYPE_TEXT);;
+
+            if(id > -1)
+                helper.update(bean);
+            else
+                helper.insert(bean);
+
+            setResult(RESULT_OK);
+            finish();
         }
-
-        bean.setQuestion(question);
-        //bean.setChoices();
-        //bean.setChoices();
-        //bean.setAnswer();
-        /*
-        if(tb.isChecked())
-            bean.setType(QuestionBean.TYPE_IMAGE);
-        else
-            bean.setType(QuestionBean.TYPE_TEXT);
-        */
-
-        if(id > -1)
-            helper.update(bean);
-        else
-            helper.insert(bean);
-
-        setResult(RESULT_OK);
-        finish();
     }
 
     public void onDelete(View view){
-        if(id > -1){
+        if(id > -1)
             helper.delete(id);
-        }
 
         setResult(RESULT_OK);
         finish();
     }
-
 }

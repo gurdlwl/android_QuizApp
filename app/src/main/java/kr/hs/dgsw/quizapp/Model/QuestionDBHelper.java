@@ -110,7 +110,7 @@ public class QuestionDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put("id", bean.getId());
-        values.put("questino", bean.getQuestion());
+        values.put("question", bean.getQuestion());
         values.put("score", bean.getScore());
         values.put("answer", bean.getAnswer());
         values.put("type", bean.getType());
